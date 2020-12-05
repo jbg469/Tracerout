@@ -147,6 +147,4 @@ def get_route(hostname):
                    #Fill in end
                 break
             finally:
-               mySocket.close()
-get_route('google.com')
-        
+               mySocket.close()      
