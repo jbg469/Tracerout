@@ -129,7 +129,7 @@ def get_route(hostname):
                     tracelist1.append("%.0fms"%((timeReceived -t)*1000))
                     tracelist1.append(str(addr[0]))
                     tracelist1.append(ip_to_host(addr[0]))
-                    print(" %d   %.0fms %s" % (ttl,(timeReceived -t)*1000, addr[0]))
+                    print(" %d   %.0fms %s" % (ttl,(timeReceived -t)*1000, addr[0])+" "+ip_to_host(addr[0]))
                     #Fill in end
                 elif types == 3:
                     bytes = struct.calcsize("d")
@@ -139,7 +139,7 @@ def get_route(hostname):
                     tracelist1.append("%.0fms"%((timeReceived -t)*1000))
                     tracelist1.append(str(addr[0]))
                     tracelist1.append(ip_to_host(addr[0]))
-                    print(" %d   %.0fms %s" % (ttl,(timeReceived -t)*1000, addr[0]))
+                    print(" %d   %.0fms %s" % (ttl,(timeReceived -t)*1000, addr[0])+" "+ ip_to_host(addr[0]))
                     #Fill in end
                 elif types == 0:
                     bytes = struct.calcsize("d")
@@ -149,7 +149,7 @@ def get_route(hostname):
                     tracelist1.append("%0fms"%((timeReceived -t)*1000))
                     tracelist1.append(str(addr[0]))
                     tracelist1.append(ip_to_host(addr[0]))
-                    print(" %d   %.0fms %s" % (ttl,(timeReceived -t)*1000, addr[0]))
+                    print(" %d   %.0fms %s" % (ttl,(timeReceived -t)*1000, addr[0])+" "+ ip_to_host(addr[0]))
                     print (tracelist2)
                     return tracelist2
                     #Fill in end
@@ -159,4 +159,5 @@ def get_route(hostname):
                 break
             finally:
                 mySocket.close()
+
 
