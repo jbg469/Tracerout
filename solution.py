@@ -49,7 +49,7 @@ def build_packet():
     
     # Make the header in a similar way to the ping exercise.
     # Append checksum to the header.
-    myChecksum = checksum(header+data)
+    myChecksum = checksum(header + data)
     if sys.platform == "darwin":
         myChecksum=socket.htons(myChecksum) & 0xffff
     else:
@@ -90,7 +90,6 @@ def get_route(hostname):
             # Make a raw socket named mySocket
             mySocket=socket.socket(socket.AF_INET,socket.SOCK_DGRAM, icmp)
             #Fill in end
-
             mySocket.setsockopt(socket.IPPROTO_IP, socket.IP_TTL, struct.pack('I', ttl))
             mySocket.settimeout(TIMEOUT)
             try:
@@ -113,7 +112,7 @@ def get_route(hostname):
                     #Fill in start
                     tracelist2.append(tracelist1)
                     #Fill in end
-            except timeout:
+            except socket.timeout:
                 continue
 
             else:
@@ -164,7 +163,7 @@ def get_route(hostname):
                 break
             finally:
                 mySocket.close()
-get_route('google.com')
+
 
 
 
