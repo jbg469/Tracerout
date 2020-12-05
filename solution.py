@@ -1,5 +1,4 @@
 from socket import *
-import socket
 import os
 import sys
 import struct
@@ -52,7 +51,7 @@ def build_packet():
     # Append checksum to the header.
     myChecksum = checksum(head+data)
     if sys.platform == "darwin":
-        myChecksum= socket.htons(myChecksum) & 0xffff
+        myChecksum= htons(myChecksum) & 0xffff
     else:
         myChecksum = htons(myChecksum)
     
@@ -73,9 +72,9 @@ def get_route(hostname):
             destAddr = gethostbyname(hostname)
 
             #Fill in start
-            icmp=socket.getprotobyname("icmp")
+            icmp=getprotobyname("icmp")
             # Make a raw socket named mySocket
-            mySocket=socket.socket(socket.AF_INET,socket.SOCK_DGRAM, icmp)
+            mySocket=socket(socket.AF_INET,socket.SOCK_DGRAM, icmp)
             #Fill in end
 
             mySocket.setsockopt(IPPROTO_IP, IP_TTL, struct.pack('I', ttl))
@@ -111,7 +110,7 @@ def get_route(hostname):
                #Fill in end
                 try: #try to fetch the hostname
                    #Fill in start
-                   domainname=socket.gethostbyaddr(addr[0])
+                   domainname=gethostbyaddr(addr[0])
                    tracelist1.append(domainname[0])
                    #Fill in end
                 except herror:   #if the host does not provide a hostname
