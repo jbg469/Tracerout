@@ -84,7 +84,7 @@ def get_route(hostname):
         for tries in range(TRIES):
             tracelist1=[]
             destAddr=socket.gethostbyname(hostname)
-
+            tracelist2.append(tracelist1)
             #Fill in start
             icmp=socket.getprotobyname("icmp")
             # Make a raw socket named mySocket
@@ -129,7 +129,6 @@ def get_route(hostname):
                     tracelist1.append("%.0fms"%((timeReceived -t)*1000))
                     tracelist1.append(str(addr[0]))
                     tracelist1.append(ip_to_host(addr[0]))
-                    tracelist2.append(tracelist1)
                     print(" %d   %.0fms %s" % (ttl,(timeReceived -t)*1000, addr[0]))
                     #Fill in end
                 elif types == 3:
@@ -140,7 +139,6 @@ def get_route(hostname):
                     tracelist1.append("%.0fms"%((timeReceived -t)*1000))
                     tracelist1.append(str(addr[0]))
                     tracelist1.append(ip_to_host(addr[0]))
-                    tracelist2.append(tracelist1)
                     print(" %d   %.0fms %s" % (ttl,(timeReceived -t)*1000, addr[0]))
                     #Fill in end
                 elif types == 0:
@@ -151,14 +149,12 @@ def get_route(hostname):
                     tracelist1.append("%0fms"%((timeReceived -t)*1000))
                     tracelist1.append(str(addr[0]))
                     tracelist1.append(ip_to_host(addr[0]))
-                    tracelist2.append(tracelist1)
                     print(" %d   %.0fms %s" % (ttl,(timeReceived -t)*1000, addr[0]))
                     print (tracelist2)
                     return tracelist2
                     #Fill in end
                 else:
                     tracelist1.append("error")
-                    tracelist2.append(tracelist1)
                     #Fill in end
                 break
             finally:
